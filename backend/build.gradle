@@ -34,9 +34,4 @@ dependencies {
     implementation 'com.google.http-client:google-http-client-android:1.23.0'
 }
 
-appengine {
-    run {
-        host = "0.0.0.0"
-    }
-}
 

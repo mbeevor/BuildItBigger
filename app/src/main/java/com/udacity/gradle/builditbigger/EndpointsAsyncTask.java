@@ -1,10 +1,9 @@
 package com.udacity.gradle.builditbigger;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
+import android.widget.ProgressBar;
 
-import com.bignerdranch.android.LibraryActivity.LibraryActivity;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
@@ -17,17 +16,19 @@ import java.io.IOException;
  * Created by Matthew on 14/07/2018.
  */
 
-public class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
+public class EndpointsAsyncTask extends AsyncTask<MainActivityFragment, Void, String> {
 
     private static MyApi myApiService = null;
     private Context context;
+    private MainActivityFragment mainActivityFragment;
+    private ProgressBar progressBar;
 
     @Override
-    protected String doInBackground(Context... params) {
+    protected String doInBackground(MainActivityFragment... params) {
         if (myApiService == null) {
             MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(),
                     new AndroidJsonFactory(), null)
-                    .setRootUrl("https://10.0.2.2:8080/_ah/api")
+                    .setRootUrl("http://10.0.2.2:8080/_ah/api/")
                     .setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
                         @Override
                         public void initialize(AbstractGoogleClientRequest<?>
@@ -39,7 +40,8 @@ public class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
             myApiService = builder.build();
         }
 
-        context = params[0];
+        mainActivityFragment = params[0];
+        context = mainActivityFragment.getActivity();
 
         try {
             return myApiService.tellJoke().execute().getData();
@@ -48,10 +50,13 @@ public class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
         }
     }
 
+
     @Override
     protected void onPostExecute(String result) {
-        Intent intent = new Intent(context, LibraryActivity.class);
-        intent.putExtra("joke", result);
-        context.startActivity(intent);     }
+
+        mainActivityFragment.displayJoke(result);
+
+
+    }
 
 }
