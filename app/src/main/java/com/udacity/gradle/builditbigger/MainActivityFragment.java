@@ -24,6 +24,7 @@ public class MainActivityFragment extends Fragment {
 
     @BindView(R.id.progress_bar) public ProgressBar progressBar;
     @BindView(R.id.joke_button) public Button button;
+    public String jokeResult;
 
     public MainActivityFragment() {
     }
@@ -63,8 +64,10 @@ public class MainActivityFragment extends Fragment {
 
     public void displayJoke(String result) {
 
+        jokeResult = result;
+
         Intent intent = new Intent(getContext(), LibraryActivity.class);
-        intent.putExtra("joke", result);
+        intent.putExtra("joke", jokeResult);
         getContext().startActivity(intent);
         progressBar.setVisibility(View.GONE);
 
