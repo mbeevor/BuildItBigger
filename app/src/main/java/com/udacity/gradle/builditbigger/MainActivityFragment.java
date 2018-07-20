@@ -22,8 +22,10 @@ import butterknife.ButterKnife;
  */
 public class MainActivityFragment extends Fragment {
 
-    @BindView(R.id.progress_bar) public ProgressBar progressBar;
-    @BindView(R.id.joke_button) public Button button;
+    @BindView(R.id.progress_bar)
+    public ProgressBar progressBar;
+    @BindView(R.id.joke_button)
+    public Button button;
     public String jokeResult;
 
     public MainActivityFragment() {
@@ -45,7 +47,7 @@ public class MainActivityFragment extends Fragment {
 
         progressBar.setVisibility(View.GONE);
 
-        button.setOnClickListener(new View.OnClickListener(){
+        button.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -64,12 +66,11 @@ public class MainActivityFragment extends Fragment {
 
     public void displayJoke(String result) {
 
-        jokeResult = result;
-
         Intent intent = new Intent(getContext(), LibraryActivity.class);
-        intent.putExtra("joke", jokeResult);
+        intent.putExtra("joke", result);
         getContext().startActivity(intent);
         progressBar.setVisibility(View.GONE);
+
 
     }
 }

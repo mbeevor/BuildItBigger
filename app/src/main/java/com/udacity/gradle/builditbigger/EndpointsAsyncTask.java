@@ -15,6 +15,7 @@ import java.io.IOException;
  * Created by Matthew on 14/07/2018.
  */
 
+
 public class EndpointsAsyncTask extends AsyncTask<MainActivityFragment, Void, String> {
 
     private static MyApi myApiService = null;
@@ -52,6 +53,7 @@ public class EndpointsAsyncTask extends AsyncTask<MainActivityFragment, Void, St
     @Override
     protected void onPostExecute(String result) {
 
+        mainActivityFragment.jokeResult = result;
         mainActivityFragment.displayJoke(result);
 
 
