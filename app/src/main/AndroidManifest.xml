@@ -25,7 +25,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.bignerdranch.android.LibraryActivity.LibraryActivity" />
+        <activity android:name="com.bignerdranch.android.libraryactivity.LibraryActivity" />
         <!--Include the AdActivity configChanges and theme. -->
         <activity
             android:name="com.google.android.gms.ads.AdActivity"
