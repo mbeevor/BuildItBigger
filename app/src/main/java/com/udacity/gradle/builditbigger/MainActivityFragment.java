@@ -27,6 +27,7 @@ public class MainActivityFragment extends Fragment {
     @BindView(R.id.joke_button)
     public Button button;
     public String jokeResult;
+    public boolean testFlag = false;
 
     public MainActivityFragment() {
     }
@@ -66,11 +67,11 @@ public class MainActivityFragment extends Fragment {
 
     public void displayJoke(String result) {
 
-        Intent intent = new Intent(getContext(), LibraryActivity.class);
-        intent.putExtra("joke", result);
-        getContext().startActivity(intent);
-        progressBar.setVisibility(View.GONE);
-
-
+        if (!testFlag) {
+            Intent intent = new Intent(getContext(), LibraryActivity.class);
+            intent.putExtra("joke", result);
+            getContext().startActivity(intent);
+            progressBar.setVisibility(View.GONE);
+        }
     }
 }
