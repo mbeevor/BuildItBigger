@@ -7,6 +7,8 @@ import android.widget.TextView;
 
 public class LibraryActivity extends AppCompatActivity {
 
+    public final static String JOKE = "joke";
+
     String jokeString;
     TextView jokeTv;
 
@@ -19,7 +21,7 @@ public class LibraryActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         if (intent != null) {
-            jokeString = intent.getStringExtra("joke");
+            jokeString = intent.getStringExtra(JOKE);
             jokeTv.setText(jokeString);
         }
 

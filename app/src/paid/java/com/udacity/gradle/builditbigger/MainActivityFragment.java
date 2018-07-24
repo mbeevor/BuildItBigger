@@ -59,7 +59,7 @@ public class MainActivityFragment extends Fragment {
 
         if (!testFlag) {
             Intent intent = new Intent(getContext(), LibraryActivity.class);
-            intent.putExtra("joke", result);
+            intent.putExtra(LibraryActivity.JOKE, result);
             getContext().startActivity(intent);
             progressBar.setVisibility(View.GONE);
         }
